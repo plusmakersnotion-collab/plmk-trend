@@ -6,14 +6,15 @@
 /assets/pretendard.css   Pretendard 400/600/700 base64 (한 번 받아 캐시)
 /archive.json            발행 레지스트리 (다음 빌드가 읽어 아카이브를 이어감)
 """
-import sys, os, json, html, shutil, importlib.util
+import sys, os, json, html, shutil, importlib.util, glob
 
-sys.path.insert(0, "/home/claude/export1")
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 from build_common import BASE_CSS, PALETTE, block_deco_svg
 from icons import ICONS
 
-SITE = "/home/claude/plmk/site"
-REG = "/home/claude/plmk/archive.json"
+SITE = HERE
+REG = os.path.join(HERE, "archive.json")
 esc = lambda s: html.escape(str(s), quote=False)
 attr = lambda s: html.escape(str(s), quote=True)
 
@@ -25,9 +26,8 @@ def load(name, path):
     return m
 
 
-C1 = load("c1", "/home/claude/plmk/content_001.py")
-C2 = load("c2", "/home/claude/plmk/content.py")
-C3 = load("c3", "/home/claude/export1/content.py")
+CONTENT_FILES = sorted(glob.glob(os.path.join(HERE, "content_[0-9][0-9][0-9].py")))
+MODULES = [load("c%d" % i, p) for i, p in enumerate(CONTENT_FILES)]
 
 ICON_MAP = {
     "bell": "megaphone", "bolt": "target", "briefcase": "briefcase", "capsule": "capsule",
@@ -45,11 +45,16 @@ SECTION = [
 ]
 
 
+def _row_from(mod):
+    r = getattr(mod, "TABLE_ROW", None)
+    return tuple(r) if r else None
+
+
 def normalize(mod):
     if hasattr(mod, "SUMMARY_3LINES"):
         return dict(no=int(mod.ISSUE_NO), date=mod.ISSUE_DATE.replace(".", "-"),
                     date_dot=mod.ISSUE_DATE, date_long=mod.ISSUE_DATE_LONG,
-                    summary=mod.SUMMARY_3LINES, posts=list(mod.POSTS))
+                    summary=mod.SUMMARY_3LINES, posts=list(mod.POSTS), row=_row_from(mod))
     posts = []
     for i, p in enumerate(mod.POSTS):
         num, title, eyebrow, color, bg, bicon = SECTION[i]
@@ -62,7 +67,7 @@ def normalize(mod):
                           intro=p["lead"], cases=cases))
     return dict(no=int(mod.ISSUE_NO), date=mod.ISSUE_DATE,
                 date_dot=mod.ISSUE_DATE.replace("-", "."), date_long=mod.ISSUE_DATE_KR,
-                summary=mod.SUMMARY3, posts=posts)
+                summary=mod.SUMMARY3, posts=posts, row=_row_from(mod))
 
 
 SUMMARY_TABLE = {
@@ -80,9 +85,14 @@ SUMMARY_TABLE = {
         "AEO 실전 매뉴얼 · 틱톡 마이크로드라마 광고 · 개인 맞춤 건기식"),
 }
 
-ISSUES = sorted([normalize(m) for m in (C1, C2, C3)], key=lambda i: i["date"], reverse=True)
+def _auto_row(i):
+    return (i["summary"][0][:40], ) + tuple(
+        " · ".join(c["title"] for c in p["cases"][:3]) for p in i["posts"][:3])
+
+ISSUES = sorted([normalize(m) for m in MODULES], key=lambda i: i["date"], reverse=True)
 LATEST = ISSUES[0]
-path_of = lambda iss: "/%s/" % iss["date"]
+path_of = lambda iss: "/%s.html" % iss["date"]
+ROW = lambda i: i.get("row") or SUMMARY_TABLE.get(i["no"]) or _auto_row(i)
 
 # ---------- 발행 레지스트리 ----------
 json.dump([{"no": i["no"], "date": i["date"], "date_long": i["date_long"],
@@ -92,7 +102,7 @@ json.dump([{"no": i["no"], "date": i["date"], "date_long": i["date_long"],
 # ---------- 조각 ----------
 HEAD = """<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>%s</title><link rel="stylesheet" href="/assets/pretendard.css"><style>%s</style></head><body>"""
+<title>%s</title><link rel="stylesheet" href="/pretendard.css"><style>%s</style></head><body>"""
 
 NAV = """<nav class="nav"><div class="wrap">%s<div class="brand"><span class="dot"></span>PLMK 트렌드</div>
 <a class="pill outline" href="/">전체 호 보기</a></div></nav>"""
@@ -149,7 +159,7 @@ for iss in ISSUES:
              '<ul class="summary-list">%s</ul></div></header>' % (iss["no"], esc(iss["date_long"]), summary)
            + "".join(render_post(p, iss["no"] * 10 + i) for i, p in enumerate(iss["posts"]))
            + FOOT)
-    write(path_of(iss) + "index.html", doc)
+    write(path_of(iss), doc)
 
 # ---------- 홈 ----------
 cards = "".join(
@@ -203,16 +213,14 @@ home = (HEAD % ("PLMK 트렌드", BASE_CSS + """
             '<td class="key">%s</td><td>%s</td><td>%s</td><td>%s</td></tr>'
             % (path_of(i), i["no"], esc(i["date_dot"]),
                sum(len(p["cases"]) for p in i["posts"]),
-               esc(SUMMARY_TABLE[i["no"]][0]), esc(SUMMARY_TABLE[i["no"]][1]),
-               esc(SUMMARY_TABLE[i["no"]][2]), esc(SUMMARY_TABLE[i["no"]][3]))
+               esc(ROW(i)[0]), esc(ROW(i)[1]),
+               esc(ROW(i)[2]), esc(ROW(i)[3]))
             for i in ISSUES)
         + FOOT)
 write("/index.html", home)
 
 # ---------- 폰트 ----------
-fonts = open("/home/claude/plmk/fonts.css", encoding="utf-8").read()
-write("/assets/pretendard.css", fonts)
-shutil.copy(REG, os.path.join(SITE, "archive.json"))
+# pretendard.css / archive.json 은 저장소 루트에 그대로 유지
 
 for root, _, files in os.walk(SITE):
     for f in sorted(files):
