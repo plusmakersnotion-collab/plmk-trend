@@ -1,0 +1,150 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLMK 트렌드 — 제4호</title><link rel="stylesheet" href="/pretendard.css"><style>
+:root{
+  --ink:#111111; --paper:#FFFFFF; --gray:#6B6B6B; --hair:#E3E1DC; --cream:#FAF9F6;
+  --lime:#E8F26B; --lilac:#D9CCFF; --coral:#FF9F80; --pink:#FFC2DD; --mint:#A6F0CB;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --paper:#FFFFFF; --cream:#FAF9F6; }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);}
+body{
+  font-family:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight:400; -webkit-font-smoothing:antialiased; line-height:1.55;
+  letter-spacing:-0.01em;
+}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+.wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+.eyebrow{font-size:13px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--gray);}
+.pill{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:12px 22px; border-radius:999px; border:1.5px solid var(--ink);
+  font-weight:700; font-size:14px; background:var(--ink); color:var(--paper);
+  white-space:nowrap; transition:opacity .15s ease;
+}
+.pill:hover{opacity:.78;}
+.pill.outline{ background:transparent; color:var(--ink); }
+.pill.on-dark{ background:var(--paper); color:var(--ink); border-color:var(--ink); }
+
+/* NAV */
+.nav{
+  position:sticky; top:0; z-index:20; background:var(--paper);
+  border-bottom:1.5px solid var(--ink);
+}
+.nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:18px; padding-bottom:18px;}
+.brand{font-weight:700; font-size:19px; letter-spacing:-0.02em; display:flex; align-items:center; gap:8px;}
+.brand .dot{width:9px; height:9px; border-radius:50%; background:var(--lime); border:1.5px solid var(--ink); display:inline-block;}
+.navlinks{display:flex; align-items:center; gap:10px;}
+.back-home{font-weight:600; font-size:14px; color:var(--gray); display:flex; align-items:center; gap:6px;}
+.back-home:hover{color:var(--ink);}
+
+/* HERO */
+.hero{ padding:72px 0 56px; border-bottom:1.5px solid var(--ink); }
+.hero h1{ font-size:44px; line-height:1.18; font-weight:700; letter-spacing:-0.03em; margin:14px 0 18px; }
+.hero p{ font-size:17px; color:var(--gray); max-width:520px; margin:0 0 28px; }
+
+/* COLOR BLOCK SECTIONS */
+.block{ border-bottom:1.5px solid var(--ink); padding:56px 0; }
+.block .wrap{ position:relative; }
+.block-tag{
+  display:inline-block; padding:6px 14px; border-radius:999px; border:1.5px solid var(--ink);
+  font-size:13px; font-weight:700; background:var(--paper); margin-bottom:20px;
+}
+.block h2{ font-size:30px; font-weight:700; letter-spacing:-0.02em; margin:0 0 22px; }
+
+/* SUMMARY LIST (3-line) */
+.summary-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; max-width:680px; }
+.summary-list li{ font-size:18px; font-weight:600; line-height:1.5; padding-left:30px; position:relative; }
+.summary-list li::before{
+  content:attr(data-n); position:absolute; left:0; top:0;
+  width:22px; height:22px; border-radius:50%; background:var(--ink); color:var(--paper);
+  font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;
+}
+
+/* ARCHIVE GRID */
+.archive-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:8px; }
+.archive-card{
+  background:var(--paper); border:1.5px solid var(--ink); border-radius:16px; overflow:hidden;
+  display:flex; flex-direction:column; transition:transform .15s ease;
+}
+.archive-card:hover{ transform:translateY(-3px); }
+.archive-thumb{ aspect-ratio:16/9; width:100%; }
+.archive-body{ padding:16px 16px 18px; }
+.archive-date{ font-size:12px; font-weight:700; color:var(--gray); margin-bottom:6px; }
+.archive-title{ font-size:15px; font-weight:700; line-height:1.4; }
+.archive-badge{
+  display:inline-block; margin-top:10px; font-size:11px; font-weight:700; padding:4px 10px;
+  border-radius:999px; border:1.5px solid var(--ink);
+}
+
+/* ISSUE BANNER */
+.banner{
+  border-radius:20px; border:1.5px solid var(--ink); padding:36px 32px; margin-bottom:28px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px; overflow:hidden; position:relative;
+}
+.banner .banner-text{ position:relative; z-index:2; }
+.banner .banner-eyebrow{ font-size:13px; font-weight:700; opacity:.7; margin-bottom:8px; }
+.banner h3{ font-size:26px; font-weight:700; letter-spacing:-0.02em; margin:0; }
+.banner-icon{ width:96px; height:96px; flex:none; background:var(--paper); border-radius:50%; border:1.5px solid var(--ink); display:flex; align-items:center; justify-content:center; position:relative; z-index:2;}
+.banner-icon svg{ width:52px; height:52px; }
+.banner-deco{ position:absolute; inset:0; opacity:.5; }
+
+/* CASE CARDS */
+.case, .meme-card{
+  display:flex; align-items:flex-start; gap:16px; padding:20px; border:1.5px solid var(--ink);
+  border-radius:16px; margin-bottom:14px; background:var(--paper); position:relative;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.case:hover, .meme-card:hover{ transform:translateX(2px); box-shadow:4px 4px 0 var(--ink); }
+.case-icon{
+  width:56px; height:56px; flex:none; border-radius:12px; border:1.5px solid var(--ink);
+  display:flex; align-items:center; justify-content:center;
+}
+.case-icon svg{ width:30px; height:30px; }
+.case-body{ flex:1; min-width:0; }
+.case-title{ font-size:17px; font-weight:700; margin:0 0 4px; letter-spacing:-0.01em; }
+.case-meta{ font-size:12px; font-weight:600; color:var(--gray); margin-bottom:8px; }
+.case-meta b{ color:var(--ink); }
+.case-row{ font-size:14.5px; line-height:1.6; margin:0 0 4px; }
+.case-row b{ font-weight:700; }
+.case-insight{
+  margin-top:10px; padding:10px 14px; border-radius:10px; background:var(--cream);
+  font-size:14px; font-weight:600; border-left:3px solid var(--ink);
+}
+.case-link{
+  flex:none; align-self:center; font-size:13px; font-weight:700; color:var(--ink);
+  display:flex; align-items:center; gap:4px; white-space:nowrap;
+}
+.case-source{ font-size:11.5px; color:var(--gray); font-weight:600; margin-top:8px; }
+
+/* FOOTER */
+.foot{ padding:48px 0 64px; }
+.foot .wrap{ display:flex; flex-direction:column; gap:18px; }
+.foot-top{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.foot-brand{ font-weight:700; font-size:18px; }
+.foot-copy{ font-size:12.5px; color:var(--gray); }
+
+@media (max-width: 760px){
+  .archive-grid{ grid-template-columns:repeat(2,1fr); }
+  .hero h1{ font-size:32px; }
+  .banner{ flex-direction:column; align-items:flex-start; }
+  .banner-icon{ width:72px; height:72px; }
+  .banner-icon svg{ width:38px; height:38px; }
+  .case, .meme-card{ flex-direction:column; }
+  .case-link{ align-self:flex-start; }
+}
+@media (max-width: 480px){
+  .archive-grid{ grid-template-columns:1fr 1fr; }
+}
+
+.issue-header{padding:40px 0 44px;border-bottom:1.5px solid var(--ink);}
+.issue-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;
+ border:1.5px solid var(--ink);font-size:13px;font-weight:700;margin-bottom:18px;}
+.issue-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);border:1.5px solid var(--ink);}
+.issue-header h1{font-size:34px;font-weight:700;letter-spacing:-.02em;margin:0 0 22px;line-height:1.3;}</style></head><body><nav class="nav"><div class="wrap"><a class="back-home" href="/">← 홈</a><div class="brand"><span class="dot"></span>PLMK 트렌드</div>
+<a class="pill outline" href="/">전체 호 보기</a></div></nav><header class="issue-header"><div class="wrap"><div class="issue-badge"><span class="dot"></span>제4호 · 2026년 9월 1일 화요일</div><h1>오늘 마케터가 알아야 할 3가지,<br>PLMK 트렌드가 정리했어요.</h1><ul class="summary-list"><li data-n="1">숨고가 1,000개 서비스를 “집으로 사람 부를 땐”이라는 한 문장으로 묶어 재정의했어요.</li><li data-n="2">이번 주 인급동은 육아와 먹방이 상위를 싹쓸이했고, 1위 릴스는 팔로워 1,750만 계정에서 나왔어요.</li><li data-n="3">같은 브랜드인데 챗GPT 3위, 퍼플렉시티 28위 — AI 엔진마다 추천 순위가 최대 35계단 갈렸어요.</li></ul></div></header><section class="block" style="background:#FF9F8022;"><div class="wrap"><span class="block-tag">① 브랜드·캠페인</span><div class="banner" style="background:#FF9F80;"><svg class="banner-deco" viewBox="0 0 300 200" preserveAspectRatio="none"><circle cx="68%" cy="84%" r="53" fill="#111111" opacity="0.12"/><circle cx="14%" cy="41%" r="38" fill="#111111" opacity="0.12"/><circle cx="36%" cy="26%" r="68" fill="#111111" opacity="0.12"/><circle cx="54%" cy="45%" r="67" fill="#111111" opacity="0.12"/></svg><div class="banner-text"><div class="banner-eyebrow">BRAND &amp; CAMPAIGN</div><h3>많은 걸 하나의 문장으로 묶은 브랜드들</h3></div><div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="18" r="3" stroke="#111" stroke-width="1.6"/><circle cx="16" cy="16" r="3" stroke="#111" stroke-width="1.6"/><path d="M9 18V6.5L19 4.5V13" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><p style="font-size:15.5px;color:#333;max-width:660px;margin:0 0 24px;line-height:1.7;">이번 주 눈에 띈 건 ‘무엇을 더 보여줄까’가 아니라 ‘무엇으로 묶을까’였어요. 1,000개 서비스를 한 문장으로, 대본 하나를 여덟 편으로 — 재료를 다시 묶어낸 4개 캠페인을 모았어요.</p><a class="case" href="https://www.openads.co.kr/content/contentDetail?contsId=20311" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFE3D8"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 11L12 4L20 11" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10V19H18V10" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="10" y="13" width="4" height="6" stroke="#111" stroke-width="1.6"/></svg></div><div class="case-body"><p class="case-title">숨고 × 주지훈 — “집으로 사람 부를 땐, 숨고”</p><p class="case-meta">TV·디지털 15초 3편 · 8월 27일 공개</p><p class="case-row"><b>What</b> · 1,000개가 넘는 서비스를 나열하는 대신, “집으로 사람 부를 일”이라는 하나의 사용 순간으로 묶어 브랜드를 재정의한 캠페인이에요.</p><p class="case-row"><b>How</b> · 집안 문제를 의인화한 ‘말썽꾼’으로 등장시키고, 고수가 도착하면 ‘사부작’ 사라지는 구조를 3편 모두 동일하게 반복했어요.</p><div class="case-insight">💡 서비스 개수를 자랑하면 오히려 기억에 안 남아요. 숨고는 카테고리 대신 ‘상황’을 소유하려 했고, 고수 250만 명·누적 신청 1,600만 건·3초에 1건이라는 규모는 그 문장을 뒷받침하는 근거로만 썼어요.</div><p class="case-source">출처 · 오픈애즈</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://magazine.cheil.com/58483" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFE3D8"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3.5" y="8" width="17" height="11" rx="1.5" stroke="#111" stroke-width="1.6"/><path d="M8.5 8V6C8.5 5 9.2 4.3 10.2 4.3H13.8C14.8 4.3 15.5 5 15.5 6V8" stroke="#111" stroke-width="1.6"/><path d="M3.5 12.5H20.5" stroke="#111" stroke-width="1.4"/></svg></div><div class="case-body"><p class="case-title">알바몬 × 제일기획 — “내 알바엔, 지켜야 할 룰이 있다”</p><p class="case-meta">유튜브 2편 · 생성형 AI 제작</p><p class="case-row"><b>What</b> · “알바는 원래 다 그래”라는 체념을 정면으로 겨냥해, 근로계약·보험·성희롱 예방교육을 ‘당연한 룰’로 세운 캠페인이에요.</p><p class="case-row"><b>How</b> · 음료수와 선풍기가 알바생에게 잔소리하는 의인화 설정을 생성형 AI로 만들고, 보이스오버는 사람이 직접 입혀 온기를 남겼어요.</p><div class="case-insight">💡 AI 제작을 전면에 내세우지 않고 ‘사람 목소리’를 남긴 선택이 핵심이에요. 안전이라는 무거운 주제일수록 전부를 AI에 맡기면 설득력이 빠진다는 걸 역으로 보여줬어요.</div><p class="case-source">출처 · 제일기획 매거진</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://www.madtimes.co.kr/news/articleView.html?idxno=28799" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFE3D8"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20C12 20 4 15 4 9.5C4 6.5 6.2 4.5 9 4.5C10.5 4.5 11.5 5.3 12 6.2C12.5 5.3 13.5 4.5 15 4.5C17.8 4.5 20 6.5 20 9.5C20 15 12 20 12 20Z" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/></svg></div><div class="case-body"><p class="case-title">캔서배 × POD LDN — “CancerBae Classic”</p><p class="case-meta">60초 영상 · DAZN 8월 26일 송출 · 대회 8월 28~30일</p><p class="case-row"><b>What</b> · 암 투병 경험이 있는 전직 프로선수가 만든 유소년 농구대회를 알리며, 암에 대한 편견을 줄이는 걸 목표로 한 캠페인이에요.</p><p class="case-row"><b>How</b> · 드레이크 ‘Nice for What’과 잭슨 5 ‘I Want You Back’을 매시업한 트랙 위에 코트·거리·공원의 아이들을 담았고, 15초 UGC는 인스타그램·틱톡으로 따로 돌렸어요.</p><div class="case-insight">💡 질병 캠페인인데 화면에 병원도 환자도 없어요. 대회라는 즐거운 사건을 앞에 세우고 메시지를 뒤에 두는 방식이라, 무거운 주제를 피하지 않으면서도 보게 만들었어요.</div><p class="case-source">출처 · 매드타임스</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://www.madtimes.co.kr/news/articleView.html?idxno=28802" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFE3D8"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="12" rx="1.5" stroke="#111" stroke-width="1.6"/><path d="M9 20H15" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><path d="M12 17V20" stroke="#111" stroke-width="1.6"/><path d="M7 9L11 11L7 13" stroke="#111" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="case-body"><p class="case-title">HUMANCENTRIC — 대본 하나로 만든 AI 영화 8편</p><p class="case-meta">오스카 후보 작가 에프티미스 필리푸 · 아티스트 8팀 참여</p><p class="case-row"><b>What</b> · 동일한 시나리오 한 장면을 8개 아티스트·팀에게 똑같이 주고, AI 도구로 각자 영화를 만들게 한 프로젝트예요.</p><p class="case-row"><b>How</b> · 대사는 한 글자도 못 바꾸게 하고 인물·배경·장르·비주얼만 자유롭게 열어뒀어요. 전시장에서는 ‘운명의 룰렛’으로 관람객이 볼 편을 무작위로 뽑게 했고요.</p><div class="case-insight">💡 제작사 대표의 말이 정확해요 — 모두가 같은 AI 도구를 쓸 수 있게 되면, 결과물을 가르는 건 만드는 사람의 관점과 선택이라는 것. 도구가 평준화될수록 기획의 몸값이 오른다는 뜻이에요.</div><p class="case-source">출처 · 매드타임스</p></div><span class="case-link">원문 보기 →</span></a></div></section><section class="block" style="background:#FFC2DD22;"><div class="wrap"><span class="block-tag">② SNS·밈</span><div class="banner" style="background:#FFC2DD;"><svg class="banner-deco" viewBox="0 0 300 200" preserveAspectRatio="none"><circle cx="58%" cy="52%" r="34" fill="#111111" opacity="0.12"/><circle cx="31%" cy="59%" r="56" fill="#111111" opacity="0.12"/><circle cx="46%" cy="80%" r="37" fill="#111111" opacity="0.12"/><circle cx="59%" cy="83%" r="20" fill="#111111" opacity="0.12"/></svg><div class="banner-text"><div class="banner-eyebrow">SNS &amp; MEME</div><h3>이번 주 인급동은 육아와 먹방이 다 가져갔어요</h3></div><div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="7.5" stroke="#111" stroke-width="1.6"/><circle cx="9" cy="11" r="1" fill="#111"/><circle cx="15" cy="11" r="1" fill="#111"/><circle cx="12" cy="13.5" r="1.2" fill="#111"/><path d="M9 16C10 17 14 17 15 16" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><path d="M12 4.5V2.5" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></div></div><p style="font-size:15.5px;color:#333;max-width:660px;margin:0 0 24px;line-height:1.7;">지난주 인급동 상위가 풍경·일상 타임랩스였다면, 이번 주는 아이와 음식이 거의 전부예요. 팔로워 1,750만 계정부터 100만 계정까지 — 지금 상위에 올라온 릴스 5편을 정리했어요.</p><a class="case" href="https://gogumafarm.kr/" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFDCEC"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20C12 20 4 15 4 9.5C4 6.5 6.2 4.5 9 4.5C10.5 4.5 11.5 5.3 12 6.2C12.5 5.3 13.5 4.5 15 4.5C17.8 4.5 20 6.5 20 9.5C20 15 12 20 12 20Z" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/></svg></div><div class="case-body"><p class="case-title">“아빠 이놈!!!! ㅠㅠ” — @yang2ro</p><p class="case-meta">인스타그램 릴스 · 팔로워 1,750만</p><p class="case-row"><b>What</b> · 아빠와 아이 사이의 짧은 해프닝을 담은 릴스로, 이번 주 인급동 최상위에 올랐어요.</p><p class="case-row"><b>Why</b> · 설명 자막도 연출도 거의 없어요. 상황 하나와 감정 하나만 남긴 구성이 국가·언어를 넘어 통하는 조건이었어요.</p><div class="case-insight">💡 팔로워 규모가 압도적이어도 상위에 오른 콘텐츠는 가장 단순한 쪽이에요. 브랜드가 참고할 지점은 소재가 아니라 ‘덜어낸 정도’예요.</div><p class="case-source">출처 · 고구마팜 인급동</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://gogumafarm.kr/" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFDCEC"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 9H16V15C16 17.7614 13.7614 20 11 20H10C7.23858 20 5 17.7614 5 15V9Z" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 10.5H17.5C18.6046 10.5 19.5 11.3954 19.5 12.5C19.5 13.6046 18.6046 14.5 17.5 14.5H16" stroke="#111" stroke-width="1.6"/><path d="M8 6C8 5 9 5 9 4" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><path d="M12 6C12 5 13 5 13 4" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></div><div class="case-body"><p class="case-title">“아으 침고여~~” 김장김치와 수육 — @hamzy_1990</p><p class="case-meta">인스타그램 릴스 · 팔로워 950만 · #김장김치 #수육 #kimchi</p><p class="case-row"><b>What</b> · 김장김치에 수육을 얹어 먹는 장면을 담은 먹방 릴스예요.</p><p class="case-row"><b>Why</b> · 해시태그를 한글과 영문(#kimchi)으로 같이 달아 국내와 해외 피드를 동시에 노렸어요.</p><div class="case-insight">💡 한식 먹방은 지금 가장 확실한 해외 유입 통로예요. 자막 없이도 읽히는 소재에 영문 태그 하나 붙이는 것만으로 도달 범위가 달라져요.</div><p class="case-source">출처 · 고구마팜 인급동</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://gogumafarm.kr/" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFDCEC"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 11L12 4L20 11" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10V19H18V10" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="10" y="13" width="4" height="6" stroke="#111" stroke-width="1.6"/></svg></div><div class="case-body"><p class="case-title">“리한이랑🤍” 육아 일상 — @seong_ging</p><p class="case-meta">인스타그램 릴스 · 팔로워 360만 · #babyboy #아기릴스 #육아일상</p><p class="case-row"><b>What</b> · 아기와 보내는 평범한 하루를 담은 육아 릴스예요.</p><p class="case-row"><b>Why</b> · #babyboy 같은 영문 태그와 #육아일상 같은 국내 태그를 섞어 두 시장을 함께 잡는 구조가 위 먹방 계정과 똑같아요.</p><div class="case-insight">💡 이번 주 상위 5편 중 3편이 육아·먹방이에요. 알고리즘이 특정 카테고리를 밀 때는 포맷을 따라 하기보다, 그 카테고리와 자연스럽게 붙는 지점을 찾는 편이 안전해요.</div><p class="case-source">출처 · 고구마팜 인급동</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://gogumafarm.kr/" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFDCEC"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="18" r="3" stroke="#111" stroke-width="1.6"/><circle cx="16" cy="16" r="3" stroke="#111" stroke-width="1.6"/><path d="M9 18V6.5L19 4.5V13" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="case-body"><p class="case-title">“단어 배속해보기 10일차” 지드래곤 편 — @deliimanzoo</p><p class="case-meta">인스타그램 릴스 · 팔로워 140만 · #지드래곤 #거제야호 #빅뱅</p><p class="case-row"><b>What</b> · 특정 단어를 점점 빠르게 발음하는 챌린지를 10일째 이어가고 있는 시리즈물이에요.</p><p class="case-row"><b>Why</b> · ‘10일차’라는 회차 표기가 핵심이에요. 한 편이 터지면 이전 회차까지 같이 소비되는 구조를 만들었어요.</p><div class="case-insight">💡 단발 챌린지보다 회차형이 유리해요. 브랜드 계정도 하나의 포맷을 정해 번호를 붙이면, 한 편의 성과가 계정 전체로 번지게 만들 수 있어요.</div><p class="case-source">출처 · 고구마팜 인급동</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://gogumafarm.kr/" target="_blank" rel="noopener"><div class="case-icon" style="background:#FFDCEC"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="16" height="7" rx="3.5" stroke="#111" stroke-width="1.6" transform="rotate(-22 12 13.5)"/><path d="M9.5 9.5L14.5 17.5" stroke="#111" stroke-width="1.4"/></svg></div><div class="case-body"><p class="case-title">“아침부터 로제라볶이 만들어 먹기” — @homecho_1</p><p class="case-meta">인스타그램 릴스 · 팔로워 100만 · #라볶이 #tteokbokki #koreanfood</p><p class="case-row"><b>What</b> · 아침에 로제라볶이를 만들어 먹는 과정을 담은 자취 요리 릴스예요.</p><p class="case-row"><b>Why</b> · ‘아침부터’라는 시간 설정 하나로 평범한 레시피 영상에 캐릭터를 얹었어요.</p><div class="case-insight">💡 팔로워 100만으로 1,750만 계정과 같은 지면에 올랐어요. 이번 주 상위권을 가른 건 계정 규모가 아니라 소재의 즉시성이었어요.</div><p class="case-source">출처 · 고구마팜 인급동</p></div><span class="case-link">원문 보기 →</span></a></div></section><section class="block" style="background:#A6F0CB22;"><div class="wrap"><span class="block-tag">③ 업계·인사이트</span><div class="banner" style="background:#A6F0CB;"><svg class="banner-deco" viewBox="0 0 300 200" preserveAspectRatio="none"><circle cx="24%" cy="13%" r="67" fill="#111111" opacity="0.12"/><circle cx="45%" cy="41%" r="34" fill="#111111" opacity="0.12"/><circle cx="27%" cy="23%" r="63" fill="#111111" opacity="0.12"/><circle cx="79%" cy="21%" r="57" fill="#111111" opacity="0.12"/></svg><div class="banner-text"><div class="banner-eyebrow">INDUSTRY &amp; INSIGHT</div><h3>AI가 답을 고르기 시작하면서 생긴 숫자들</h3></div><div class="banner-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="8" width="14" height="11" rx="2" stroke="#111" stroke-width="1.6"/><circle cx="9.5" cy="13.5" r="1.2" fill="#111"/><circle cx="14.5" cy="13.5" r="1.2" fill="#111"/><path d="M9 17H15" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><path d="M12 8V5" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="3.5" r="1.2" stroke="#111" stroke-width="1.4"/></svg></div></div><p style="font-size:15.5px;color:#333;max-width:660px;margin:0 0 24px;line-height:1.7;">지난 호에서 다룬 AEO의 후속편 격인 데이터가 나왔어요. 같은 브랜드가 AI마다 다르게 추천되고, 광고 지면의 가격 구조도 흔들리고 있어요. 숫자가 붙은 4건을 정리했어요.</p><a class="case" href="https://www.madtimes.co.kr/news/articleView.html?idxno=28795" target="_blank" rel="noopener"><div class="case-icon" style="background:#D6F7E6"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="8" width="14" height="11" rx="2" stroke="#111" stroke-width="1.6"/><circle cx="9.5" cy="13.5" r="1.2" fill="#111"/><circle cx="14.5" cy="13.5" r="1.2" fill="#111"/><path d="M9 17H15" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><path d="M12 8V5" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="3.5" r="1.2" stroke="#111" stroke-width="1.4"/></svg></div><div class="case-body"><p class="case-title">같은 브랜드인데 AI마다 순위가 달랐다 — 브랜딥 2026 3분기 조사</p><p class="case-meta">챗GPT·퍼플렉시티·제미나이 3종 · 18개 카테고리 · 카테고리당 중립 질문 100개</p><p class="case-row"><b>What</b> · 브랜드명을 언급하지 않은 중립 질문만 던져, 각 AI가 어떤 브랜드를 스스로 추천하는지 측정한 조사예요.</p><p class="case-row"><b>How</b> · 같은 브랜드의 엔진별 순위 차이가 컸어요. 바이오덤(베이비로션)은 챗GPT 3위·퍼플렉시티 28위로 25계단, 아이허브(오메가3)는 35계단, 언더아머(신발)는 18계단 벌어졌어요.</p><div class="case-insight">💡 지난 호 AEO 얘기의 실측 데이터예요. ‘AI 검색 대응’을 한 덩어리로 보면 안 된다는 뜻이고, 엔진별로 결과를 따로 확인해야 한다는 실무 과제가 생겼어요.</div><p class="case-source">출처 · 매드타임스 · 브랜딥</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://www.madtimes.co.kr/news/articleView.html?idxno=28795" target="_blank" rel="noopener"><div class="case-icon" style="background:#D6F7E6"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="6.5" stroke="#111" stroke-width="1.6"/><path d="M20 20L15.5 15.5" stroke="#111" stroke-width="1.6" stroke-linecap="round"/></svg></div><div class="case-body"><p class="case-title">쏠림이 극단적인 카테고리, 아직 열려 있는 카테고리</p><p class="case-meta">같은 조사 · 점유율(Share of Voice) 기준</p><p class="case-row"><b>What</b> · 러닝화는 뉴발란스가 89.9%, 헤드폰은 소니 84%, 로봇청소기는 로보락 86%로 한 브랜드가 언급을 독식했어요.</p><p class="case-row"><b>How</b> · 반면 비타민D는 3회 이상 언급된 브랜드가 44개였고 1위와 3위 격차가 5점에 불과했어요. 유산균은 3회 이상 언급 브랜드가 15개뿐이었고요.</p><div class="case-insight">💡 우리 카테고리가 이미 굳었는지 아직 비어 있는지부터 확인해야 해요. 89.9% 쏠린 곳에서 순위를 다투는 것과 44개가 난립한 곳에서 자리를 잡는 건 전혀 다른 게임이에요.</div><p class="case-source">출처 · 매드타임스 · 브랜딥</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://www.madtimes.co.kr/news/articleView.html?idxno=28798" target="_blank" rel="noopener"><div class="case-icon" style="background:#D6F7E6"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10V14H7L14 18V6L7 10H4Z" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/><path d="M17 9.5C18 10.3 18 13.7 17 14.5" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><path d="M9 18L10 21" stroke="#111" stroke-width="1.4" stroke-linecap="round"/></svg></div><div class="case-body"><p class="case-title">뉴스 지면 광고가 더 싸다 — 더블베리파이 조사</p><p class="case-meta">광고주 12곳 · 2026년 상반기 · 가디언, AP, 텔레그래프 등 수십 개 뉴스 사이트</p><p class="case-row"><b>What</b> · 뉴스 사이트 광고가 다른 디지털 지면 대비 CPM 17.7%, CPC 38.4%, 가시성 기준 vCPM 20.6% 낮게 집행됐어요.</p><p class="case-row"><b>How</b> · 앞선 조사에서는 전문 뉴스 콘텐츠 옆 광고의 인게이지먼트가 16% 높게 나온 바 있어요.</p><div class="case-insight">💡 브랜드 세이프티 우려로 뉴스 지면을 통째로 제외해온 관행이 만든 가격 공백이에요. 카테고리 단위로 막지 말고 기사 단위로 거르면, 지금은 저렴하게 살 수 있는 지면이에요.</div><p class="case-source">출처 · 매드타임스 · 더블베리파이</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://www.i-boss.co.kr/ab-2877-17974" target="_blank" rel="noopener"><div class="case-icon" style="background:#D6F7E6"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#111" stroke-width="1.6"/><circle cx="12" cy="12" r="4.5" stroke="#111" stroke-width="1.6"/><circle cx="12" cy="12" r="1.2" fill="#111"/></svg></div><div class="case-body"><p class="case-title">네이버 스마트스토어, 고객을 직접 잘라 쓰는 기능 신설</p><p class="case-meta">9월 9일 오후 8시부터 적용</p><p class="case-row"><b>What</b> · 판매자가 원하는 조건을 직접 설정해 스토어 고객을 세분화하는 ‘타겟 세그먼트 생성·관리’ 기능이 열려요.</p><p class="case-row"><b>How</b> · 우선 마케팅 메시지 발송에 적용되고, 쿠폰·적립 등으로 넓힐 계획이라고 밝혔어요.</p><div class="case-insight">💡 전체 발송 위주였던 스마트스토어 CRM이 조건 기반으로 바뀌는 신호예요. 9월 9일 전에 어떤 조건으로 고객을 나눌지 미리 정리해두면 첫 주부터 바로 쓸 수 있어요.</div><p class="case-source">출처 · 아이보스</p></div><span class="case-link">원문 보기 →</span></a><a class="case" href="https://www.madtimes.co.kr/news/articleView.html?idxno=28812" target="_blank" rel="noopener"><div class="case-icon" style="background:#D6F7E6"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#111" stroke-width="1.6"/><path d="M12 8V12L15 14" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="case-body"><p class="case-title">AI 도입의 95%가 멈춘다는 숫자, 어떻게 읽어야 할까</p><p class="case-meta">MIT 조사 · METR 실험 246개 실제 업무 과제</p><p class="case-row"><b>What</b> · 생성형 AI를 검토한 조직은 60%, 파일럿까지 간 곳은 20%, 실제 운영에 안착한 곳은 5%였어요.</p><p class="case-row"><b>How</b> · METR 실험이 더 뼈아파요. 전문가는 24% 빨라질 거라 예측했고 사용자 본인은 20% 빨라졌다고 느꼈는데, 실측은 오히려 19% 느려졌어요.</p><div class="case-insight">💡 체감 속도와 실제 성과가 40포인트 넘게 벌어진다는 게 핵심이에요. ‘AI 써보니 빨라졌다’는 팀 내부 피드백만으로 도입을 판단하면 안 되고, 도입 전후를 같은 기준으로 측정할 장치를 먼저 만들어야 해요.</div><p class="case-source">출처 · 매드타임스</p></div><span class="case-link">원문 보기 →</span></a></div></section><footer class="foot"><div class="wrap"><div class="foot-top">
+<div class="foot-brand">PLMK 트렌드</div><a class="pill" href="/">← 홈으로</a></div>
+<div class="foot-copy">매일 아침 자동 발행되는 마케팅·광고 트렌드 브리핑</div></div></footer></body></html>
