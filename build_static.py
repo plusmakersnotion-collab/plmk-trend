@@ -54,7 +54,8 @@ def normalize(mod):
     if hasattr(mod, "SUMMARY_3LINES"):
         return dict(no=int(mod.ISSUE_NO), date=mod.ISSUE_DATE.replace(".", "-"),
                     date_dot=mod.ISSUE_DATE, date_long=mod.ISSUE_DATE_LONG,
-                    summary=mod.SUMMARY_3LINES, posts=list(mod.POSTS), row=_row_from(mod))
+                    summary=mod.SUMMARY_3LINES, posts=list(mod.POSTS), row=_row_from(mod),
+                    slug=getattr(mod, "ISSUE_SLUG", None), edition=getattr(mod, "EDITION", ""))
     posts = []
     for i, p in enumerate(mod.POSTS):
         num, title, eyebrow, color, bg, bicon = SECTION[i]
@@ -67,7 +68,8 @@ def normalize(mod):
                           intro=p["lead"], cases=cases))
     return dict(no=int(mod.ISSUE_NO), date=mod.ISSUE_DATE,
                 date_dot=mod.ISSUE_DATE.replace("-", "."), date_long=mod.ISSUE_DATE_KR,
-                summary=mod.SUMMARY3, posts=posts, row=_row_from(mod))
+                summary=mod.SUMMARY3, posts=posts, row=_row_from(mod),
+                slug=getattr(mod, "ISSUE_SLUG", None), edition=getattr(mod, "EDITION", ""))
 
 
 SUMMARY_TABLE = {
@@ -89,9 +91,9 @@ def _auto_row(i):
     return (i["summary"][0][:40], ) + tuple(
         " · ".join(c["title"] for c in p["cases"][:3]) for p in i["posts"][:3])
 
-ISSUES = sorted([normalize(m) for m in MODULES], key=lambda i: i["date"], reverse=True)
+ISSUES = sorted([normalize(m) for m in MODULES], key=lambda i: (i["date"], i["no"]), reverse=True)
 LATEST = ISSUES[0]
-path_of = lambda iss: "/%s.html" % iss["date"]
+path_of = lambda iss: "/%s.html" % (iss.get("slug") or iss["date"])
 ROW = lambda i: i.get("row") or SUMMARY_TABLE.get(i["no"]) or _auto_row(i)
 
 # ---------- 발행 레지스트리 ----------
@@ -168,7 +170,7 @@ cards = "".join(
     '<div class="archive-body"><div class="archive-date">%s</div>'
     '<div class="archive-title">%s</div><span class="archive-badge">제%d호</span></div></a>'
     % (path_of(i), PALETTE[["coral", "mint", "lilac"][n % 3]],
-       ICONS[["music", "clown", "coffee"][n % 3]], esc(i["date_dot"]),
+       ICONS[["music", "clown", "coffee"][n % 3]], esc(i["date_dot"] + ((" " + i["edition"]) if i.get("edition") else "")),
        esc(i["posts"][0]["banner_title"]), i["no"])
     for n, i in enumerate(ISSUES))
 
@@ -211,7 +213,7 @@ home = (HEAD % ("PLMK 트렌드", BASE_CSS + """
           '</tr></thead><tbody>%s</tbody></table></div></div></section>' % "".join(
             '<tr><td class="no"><a href="%s">제%d호</a><small>%s</small><small>사례 %d건</small></td>'
             '<td class="key">%s</td><td>%s</td><td>%s</td><td>%s</td></tr>'
-            % (path_of(i), i["no"], esc(i["date_dot"]),
+            % (path_of(i), i["no"], esc(i["date_dot"] + ((" " + i["edition"]) if i.get("edition") else "")),
                sum(len(p["cases"]) for p in i["posts"]),
                esc(ROW(i)[0]), esc(ROW(i)[1]),
                esc(ROW(i)[2]), esc(ROW(i)[3]))
