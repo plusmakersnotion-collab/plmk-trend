@@ -7,6 +7,7 @@ SUMMARY_3LINES = [
     "중고차 3사가 같은 불신을 서로 다른 방식으로 풀었어요. 엔카는 감성, 케이카는 유머, 헤이딜러는 기술. 케이카 캠페인은 유튜브 2,000만 조회를 넘겼습니다.",
     "인급동 1위는 젤리 달라고 엉덩이를 씰룩거리는 아기 영상(15.8M). 3위는 여의도 불꽃축제 전야제를 우연히 본 택시 승객이었어요.",
     "쇼핑몰 리뷰 운영 기준을 공개해야 하고 AI 삭제 기준도 대상에 들어갑니다. 네이버는 PC 쇼핑광고에서 보장형을 없애기로 했어요.",
+    "오늘부터 ④ AI·자동화 파트를 새로 넣었어요. 첫 편은 챗GPT 광고 — 최소 집행액이 5만 달러까지 내려오면서 중소 브랜드도 진입 구간에 들어왔습니다.",
 ]
 
 CAR = "https://gogumafarm.kr/%ec%97%94%ec%b9%b4%c2%b7%ec%bc%80%ec%9d%b4%ec%b9%b4%c2%b7%ed%97%a4%ec%9d%b4%eb%94%9c%eb%9f%ac%eb%a1%9c-%eb%b3%b4%eb%8a%94-%ec%a4%91%ea%b3%a0%ec%b0%a8-%ed%94%8c%eb%9e%ab%ed%8f%bc%ec%9d%98-%ec%8b%a0/"
@@ -146,18 +147,59 @@ INSIGHT_POST = {
     ],
 }
 
-POSTS = [BRAND_POST, MEME_POST, INSIGHT_POST]
+
+AI_POST = {
+    "key": "ai", "num": "④", "title": "AI·자동화",
+    "banner_title": "챗GPT 광고, 이제 '볼 것'이 아니라 '할 것'이 됐어요",
+    "banner_eyebrow": "AI & AUTOMATION",
+    "color": "lilac", "icon": "robot",
+    "intro": "③이 플랫폼에서 무슨 일이 벌어졌는지를 다뤘다면, ④는 마케터가 그래서 뭘 해볼지를 다룹니다. 오늘은 챗GPT 광고를 실제로 집행하는 관점에서 정리했어요. 제5호에서 '연환산 매출 10억 달러'로만 언급했던 그 지면입니다.",
+    "cases": [
+        {"icon": "megaphone", "bg": "#EDE7FF",
+         "title": "진입 문턱이 5분의 1로 — 최소 집행액 $250K → $50K",
+         "meta": "2월 9일 미국 파일럿 시작 · 4월 10일 셀프서브 대시보드 오픈",
+         "rows": [("What", "영업을 거치지 않고 광고주가 직접 집행하는 셀프서브 광고 매니저가 열리면서 최소 집행액이 25만 달러에서 5만 달러로 떨어졌어요."),
+                  ("Why", "이 시점부터 중소 브랜드도 진입 가능한 구간에 들어왔습니다.")],
+         "insight": "과금 방식도 3개월 만에 바뀌었어요. CPM 60달러로 시작해 25달러까지 내려간 뒤 CPC 3~5달러 입찰로 전환됐습니다. AI 검색의 수익 모델이 구글 애드워즈와 같은 방향으로 수렴하고 있다는 뜻이에요.",
+         "source": "아이보스 정보공유", "url": "https://www.i-boss.co.kr/ab-6141-70320"},
+        {"icon": "search", "bg": "#EDE7FF",
+         "title": "키워드가 아니라 '맥락'을 산다 — Context Hint",
+         "meta": "광고 노출은 대화 맥락 기반 · 초기 테스트 기준 대략 다섯 대화당 한 번",
+         "rows": [("What", "키워드를 지정하는 방식이 아니라, 상품에 대한 사전 설명을 미리 등록해 AI가 어떤 맥락에서 꺼낼지를 설정합니다. 이걸 Context Hint라고 불러요."),
+                  ("How", "답변 아래에 'Sponsored' 라벨이 붙어 자연 답변과 분리돼 노출됩니다.")],
+         "insight": "AEO·GEO 작업과 발상이 같아요. AI가 우리 상품을 어떤 문장으로 이해하게 만들 것인가. 검색광고에서 쓰던 키워드 리스트를 그대로 옮기면 작동하지 않습니다.",
+         "source": "위커프 블로그", "url": "https://weekerp.com/ko/blog/chatgpt-ads-ai-search-visibility"},
+        {"icon": "briefcase", "bg": "#EDE7FF",
+         "title": "B2B라면 지금은 닿기 어렵다",
+         "meta": "광고 노출 대상 · Free와 Go(월 8달러) 요금제 · Pro·Business·Enterprise는 광고 없음",
+         "rows": [("What", "광고는 무료와 저가 요금제 사용자에게만 노출돼요. 상위 요금제는 광고가 붙지 않습니다."),
+                  ("Why", "구매력을 갖춘 실무자와 기업 고객은 업무상 이미 유료 버전을 쓰고 있을 확률이 높아요.")],
+         "insight": "B2C 소비재라면 지금 테스트해볼 만하지만, B2B 솔루션이라면 도달 자체가 어긋납니다. 예산을 넣기 전에 우리 타깃이 어느 요금제를 쓰는지부터 생각해봐야 해요.",
+         "source": "위커프 블로그", "url": "https://weekerp.com/ko/blog/chatgpt-ads-ai-search-visibility"},
+        {"icon": "robot", "bg": "#EDE7FF",
+         "title": "광고를 사기 전에 GEO부터 — 스키마와 독창 콘텐츠",
+         "meta": "제로클릭 대응 · Schema.org 구조화 데이터",
+         "rows": [("What", "AI 에이전트가 정보를 선별하고 제로클릭이 현실화되는 상황에서, AI가 브랜드를 신뢰할 소스로 인식하게 만드는 작업이 먼저라는 정리예요."),
+                  ("How", "Schema.org 스키마를 적용하고 다른 데 없는 독창적인 콘텐츠를 쌓는 두 갈래로 접근합니다.")],
+         "insight": "제3호의 AEO 실전 매뉴얼과 이어지는 이야기예요. 광고로 노출을 사더라도, 자연 답변에서 언급되지 않는 브랜드는 결국 광고비만 계속 태우게 됩니다. 순서는 GEO가 먼저입니다.",
+         "source": "오픈애즈", "url": "https://www.openads.co.kr/content/contentDetail?contsId=18708"},
+    ],
+}
+
+POSTS = [BRAND_POST, MEME_POST, INSIGHT_POST, AI_POST]
 
 TABLE_ROW = (
     "같은 약점을 서로 다르게 푼 브랜드들, 그리고 '기준을 공개하라'",
     "중고차 3사 — 엔카 감성·케이카 유머(2,000만 조회)·헤이딜러 기술(헤이딜러 eye 특허)",
     "인급동 1위 아기 젤리 춤 15.8M · 여의도 불꽃축제 UGC 3.1M",
     "쇼핑몰 리뷰 운영 기준 공개 의무화 · 네이버 PC 쇼핑광고 보장형 폐지 · 화장품 특허 표시 634건 적발",
+    "챗GPT 광고 최소 집행액 $250K→$50K · CPC $3~5 전환 · Context Hint로 맥락 타기팅 · B2B는 도달 한계",
 )
 
 SOURCES = [
     ("고구마팜", "gogumafarm.kr", "https://gogumafarm.kr/"),
     ("고구마팜 인급동", "gogumafarm.kr/trending", "https://gogumafarm.kr/trending"),
     ("아이보스 마케팅 뉴스", "i-boss.co.kr", "https://www.i-boss.co.kr/ab-7214"),
+    ("오픈애즈", "openads.co.kr", "https://www.openads.co.kr/"),
     ("인스타그램 · 유튜브", "브랜드·크리에이터 원문", "https://www.instagram.com/"),
 ]

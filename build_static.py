@@ -42,6 +42,7 @@ SECTION = [
     ("①", "브랜드·캠페인", "BRAND & CAMPAIGN", "coral", "#FFE3D8", "music"),
     ("②", "SNS·밈", "SNS & MEME", "pink", "#FFDCEC", "clown"),
     ("③", "업계·인사이트", "INDUSTRY & INSIGHT", "mint", "#D6F7E6", "robot"),
+    ("④", "AI·자동화", "AI & AUTOMATION", "lilac", "#E8E0FF", "robot"),
 ]
 
 
@@ -209,14 +210,15 @@ home = (HEAD % ("PLMK 트렌드", BASE_CSS + """
           '<span class="block-tag">SUMMARY</span><h2>호별 핵심 정리</h2>'
           '<p style="font-size:15px;color:#333;margin:0 0 22px;">발행된 호를 한눈에 비교할 수 있게 정리했어요.</p>'
           '<div class="cmp-wrap"><table class="cmp"><thead><tr>'
-          '<th>호</th><th>이번 호 한 줄</th><th>① 브랜드·캠페인</th><th>② SNS·밈</th><th>③ 업계·인사이트</th>'
+          '<th>호</th><th>이번 호 한 줄</th><th>① 브랜드·캠페인</th><th>② SNS·밈</th><th>③ 업계·인사이트</th><th>④ AI·자동화</th>'
           '</tr></thead><tbody>%s</tbody></table></div></div></section>' % "".join(
             '<tr><td class="no"><a href="%s">제%d호</a><small>%s</small><small>사례 %d건</small></td>'
-            '<td class="key">%s</td><td>%s</td><td>%s</td><td>%s</td></tr>'
+            '<td class="key">%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>'
             % (path_of(i), i["no"], esc(i["date_dot"] + ((" " + i["edition"]) if i.get("edition") else "")),
                sum(len(p["cases"]) for p in i["posts"]),
                esc(ROW(i)[0]), esc(ROW(i)[1]),
-               esc(ROW(i)[2]), esc(ROW(i)[3]))
+               esc(ROW(i)[2]), esc(ROW(i)[3]),
+               esc(ROW(i)[4]) if len(ROW(i)) > 4 else '—')
             for i in ISSUES)
         + FOOT)
 write("/index.html", home)
