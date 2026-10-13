@@ -94,6 +94,10 @@ def _auto_row(i):
 
 ISSUES = sorted([normalize(m) for m in MODULES], key=lambda i: (i["date"], i["no"]), reverse=True)
 LATEST = ISSUES[0]
+
+# 홈 "호별 핵심 정리" 비교표는 최근 N개만 보여준다 (지난 호는 "지난 조간" 아카이브에서)
+CMP_LIMIT = 10
+CMP_ISSUES = ISSUES[:CMP_LIMIT]
 path_of = lambda iss: "/%s.html" % (iss.get("slug") or iss["date"])
 ROW = lambda i: i.get("row") or SUMMARY_TABLE.get(i["no"]) or _auto_row(i)
 
@@ -208,8 +212,10 @@ home = (HEAD % ("PLMK 트렌드", BASE_CSS + """
           '<h2>지난 조간</h2><div class="archive-grid">%s</div></div></section>' % cards
         + '<section class="block"><div class="wrap">'
           '<span class="block-tag">SUMMARY</span><h2>호별 핵심 정리</h2>'
-          '<p style="font-size:15px;color:#333;margin:0 0 22px;">발행된 호를 한눈에 비교할 수 있게 정리했어요.</p>'
-          '<div class="cmp-wrap"><table class="cmp"><thead><tr>'
+        + ('<p style="font-size:15px;color:#333;margin:0 0 22px;">'
+           '최근 %d개 호를 한눈에 비교할 수 있게 정리했어요. 그 이전 호는 위 &ldquo;지난 조간&rdquo;에서 볼 수 있어요.</p>'
+           % len(CMP_ISSUES))
+        + '<div class="cmp-wrap"><table class="cmp"><thead><tr>'
           '<th>호</th><th>이번 호 한 줄</th><th>① 브랜드·캠페인</th><th>② SNS·밈</th><th>③ 업계·인사이트</th><th>④ AI·자동화</th>'
           '</tr></thead><tbody>%s</tbody></table></div></div></section>' % "".join(
             '<tr><td class="no"><a href="%s">제%d호</a><small>%s</small><small>사례 %d건</small></td>'
@@ -219,7 +225,7 @@ home = (HEAD % ("PLMK 트렌드", BASE_CSS + """
                esc(ROW(i)[0]), esc(ROW(i)[1]),
                esc(ROW(i)[2]), esc(ROW(i)[3]),
                esc(ROW(i)[4]) if len(ROW(i)) > 4 else '—')
-            for i in ISSUES)
+            for i in CMP_ISSUES)
         + FOOT)
 write("/index.html", home)
 
